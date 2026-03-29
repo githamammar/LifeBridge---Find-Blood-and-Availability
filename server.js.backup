@@ -1,0 +1,102 @@
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const path = require('path');
+require('dotenv').config();
+
+const connectDB = require('./config/database');
+const config = require('./config/config');
+
+// Import routes
+const listingRoutes = require('./routes/listings');
+const ngoRoutes = require('./routes/ngos');
+const donationRoutes = require('./routes/donations');
+const inquiryRoutes = require('./routes/inquiries');
+const adminRoutes = require('./routes/admin');
+
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Security middleware
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+
+// Rate limiting
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use('/api/', limiter);
+
+// CORS
+app.use(cors(config.corsOptions));
+
+// Body parsing middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Logging
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+// Static files for uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// API Routes
+app.use('/api/listings', listingRoutes);
+app.use('/api/ngos', ngoRoutes);
+app.use('/api/donations', donationRoutes);
+app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/admin', adminRoutes);
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV
+    });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+    res.json({
+        name: 'LifeBridge API',
+        version: '1.0.0',
+        status: 'Running',
+        endpoints: {
+            listings: '/api/listings',
+            ngos: '/api/ngos',
+            donations: '/api/donations',
+            inquiries: '/api/inquiries',
+            admin: '/api/admin'
+        }
+    });
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found' });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.status || 500).json({
+        message: err.message || 'Internal server error',
+        error: process.env.NODE_ENV === 'development' ? err : {}
+    });
+});
+
+const PORT = config.port;
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📡 Environment: ${process.env.NODE_ENV}`);
+    console.log(`🔗 API URL: http://localhost:${PORT}`);
+});

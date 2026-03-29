@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeBridge | Find Blood Banks Near You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="logo">🩸 LifeBridge</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Find Blood</a>
+            <a href="donate.html">Donate Blood</a>
+            <a href="ngo.html">Blood Banks</a>
+            <a href="about.html">About</a>
+            <a href="free-map.html">📍 Map</a>
+        </div>
+        <button class="btn-outline" id="fakeRegisterBtn">+ Register Blood Bank</button>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Find Blood Banks<br>Near You</h1>
+        <p>Search for blood banks across India. Check availability and contact them directly.</p>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-section">
+        <div class="search-input">
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Search by city, blood bank name, or blood group...">
+        </div>
+        <div class="filter-group">
+            <select id="bloodGroupFilter">
+                <option value="all">All Blood Groups</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <select id="cityFilter">
+                <option value="all">All Cities</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+            </select>
+        </div>
+        <button class="search-btn" id="searchBtn">Search</button>
+    </div>
+
+    <div class="stats-row">
+        <div class="result-count" id="resultCount">0 blood banks available</div>
+        <button class="reset-filters" id="resetFiltersBtn">⟳ Reset filters</button>
+    </div>
+
+    <!-- Listings Grid -->
+    <div id="listingsContainer" class="listings-grid"></div>
+    
+    <!-- Info Note -->
+    <div class="info-note" style="background: #e3f2fd; padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center;">
+        <p style="color: #1565c0;">🩸 <strong>How to use:</strong> Find blood banks near you, check blood group availability, and contact them directly.</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>🩸 LifeBridge</h4>
+                <p>Connecting blood donors with blood banks across India.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Find Blood</a></li>
+                    <li><a href="donate.html">Donate Blood</a></li>
+                    <li><a href="ngo.html">Blood Banks</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📧 support@lifebridge.org</p>
+                <p>📞 1800-123-HELP</p>
+                <p>📍 New Delhi, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>❤️ Every drop counts — donate blood today</p>
+            <p>© 2025 LifeBridge — Connecting blood donors across India</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/real-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

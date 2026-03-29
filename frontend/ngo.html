@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeBridge | Verified NGOs Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">🫀 LifeBridge</div>
+        <div class="nav-links">
+            <a href="index.html">Find</a>
+            <a href="donate.html">Donate</a>
+            <a href="ngo.html" class="active">NGOs</a>
+            <a href="about.html">About</a>
+            <a href="free-map.html">📍 Map</a>
+        </div>
+        <button class="btn-outline" id="openNgoModalBtn">+ Register as NGO</button>
+    </div>
+
+    <div class="hero">
+        <h1>Verified NGOs Across India</h1>
+        <p>Partnering with trusted organizations to ensure safe and transparent donation processes.</p>
+    </div>
+
+    <div class="stats-row">
+        <div class="result-count" id="ngoCount">0 NGOs partnered</div>
+        <div class="filter-group">
+            <select id="cityNgoFilter">
+                <option value="all">All Cities</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="ngoContainer" class="ngo-grid"></div>
+</div>
+
+<!-- NGO Registration Modal -->
+<div id="ngoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register Your NGO</h2>
+        <form id="ngoRegistrationForm">
+            <div class="form-group">
+                <label>NGO Name *</label>
+                <input type="text" id="ngoName" required>
+            </div>
+            <div class="form-group">
+                <label>Registration Number (12AA/80G) *</label>
+                <input type="text" id="ngoRegNumber" required>
+            </div>
+            <div class="form-group">
+                <label>City *</label>
+                <input type="text" id="ngoCity" required>
+            </div>
+            <div class="form-group">
+                <label>Address *</label>
+                <textarea id="ngoAddress" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Contact Person *</label>
+                <input type="text" id="ngoContactPerson" required>
+            </div>
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" id="ngoPhone" required>
+            </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="ngoEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Services Offered</label>
+                <select id="ngoServices" multiple style="height: 80px;">
+                    <option>Blood Donation</option>
+                    <option>Organ Donation</option>
+                    <option>Platelet Donation</option>
+                    <option>Transplant Support</option>
+                    <option>Awareness Programs</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">Submit for Verification</button>
+        </form>
+        <p class="modal-note">⚠️ Verification typically takes 3-5 business days. You'll receive an email confirmation.</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>🫀 LifeBridge</h4>
+                <p>Connecting donors with recipients through verified NGOs across India.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Find Listings</a></li>
+                    <li><a href="donate.html">Become a Donor</a></li>
+                    <li><a href="ngo.html">Partner NGOs</a></li>
+                    <li><a href="about.html">Our Mission</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📧 support@lifebridge.org</p>
+                <p>📞 1800-123-HELP</p>
+                <p>📍 New Delhi, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>❤️ Every donation counts — be a hero today</p>
+            <p>© 2025 LifeBridge — Saving lives through generosity</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/real-data.js"></script>
+<script src="js/ngo.js"></script>
+</body>
+</html>
